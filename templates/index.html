@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chiyou – We Cure You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #0f3f3a;
+        --card-bg: #0c2f2b;
+        --accent: #f4c57a;
+        --accent-soft: rgba(244, 197, 122, 0.18);
+        --text: #fdfcf7;
+        --muted: #9fb1a7;
+        --danger: #f97373;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: radial-gradient(circle at top, #1c6157 0, #0b2723 55%);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+
+      .shell {
+        width: 100%;
+        max-width: 960px;
+      }
+
+      .header {
+        margin-bottom: 24px;
+      }
+
+      .brand-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .brand-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 999px;
+        object-fit: cover;
+        border: 2px solid rgba(244, 197, 122, 0.8);
+        box-shadow: 0 0 0 4px rgba(5, 46, 43, 0.85);
+        background: #0f766e;
+      }
+
+      .brand-main {
+        font-size: 1.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .brand-tagline {
+        font-size: 0.95rem;
+        color: var(--accent);
+      }
+
+      .brand-sub-korean {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      .subtitle {
+        margin: 8px 0 0;
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+
+      .card {
+        background: radial-gradient(circle at top left, #145b55 0, #051615 52%);
+        border-radius: 18px;
+        padding: 24px 24px 28px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        display: grid;
+        grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+        gap: 24px;
+      }
+
+      @media (max-width: 840px) {
+        .card {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      .panel {
+        padding: 12px 16px;
+        border-radius: 14px;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+      }
+
+      .panel h2 {
+        margin: 0 0 10px;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--muted);
+      }
+
+      .upload-zone {
+        border-radius: 12px;
+        padding: 18px 16px;
+        border: 1px dashed rgba(156, 163, 175, 0.8);
+        background: rgba(15, 23, 42, 0.55);
+        text-align: center;
+        cursor: pointer;
+        transition: border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .upload-zone:hover {
+        border-color: var(--accent);
+        background: rgba(15, 23, 42, 0.8);
+      }
+
+      .upload-label-main {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+      }
+
+      .upload-label-sub {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .button-row {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 12px;
+        gap: 8px;
+      }
+
+      button {
+        border-radius: 999px;
+        border: none;
+        padding: 8px 18px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.08s ease, box-shadow 0.1s ease, background 0.15s;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #fbbf24, #f97316);
+        color: #111827;
+        box-shadow: 0 12px 24px rgba(249, 115, 22, 0.45);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 16px 30px rgba(249, 115, 22, 0.55);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--muted);
+      }
+
+      .flash {
+        background: rgba(248, 113, 113, 0.08);
+        border: 1px solid rgba(248, 113, 113, 0.6);
+        border-radius: 10px;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+        color: var(--danger);
+        margin-bottom: 10px;
+      }
+
+      .preview-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .preview-img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        background: #022c22;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+
+      .chip {
+        border-radius: 999px;
+        padding: 3px 9px;
+        font-size: 0.75rem;
+        background: rgba(15, 23, 42, 0.9);
+        border: 1px solid rgba(148, 163, 184, 0.4);
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      .chip-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .summary-title {
+        font-size: 1rem;
+        margin: 2px 0 4px;
+      }
+
+      .summary-subtitle {
+        font-size: 0.8rem;
+        color: var(--muted);
+        margin: 0 0 10px;
+      }
+
+      .va-pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        font-size: 0.8rem;
+      }
+
+      .colors-list {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 6px;
+      }
+
+      .color-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.8rem;
+      }
+
+      .color-swatch {
+        width: 16px;
+        height: 16px;
+        border-radius: 6px;
+        border: 1px solid rgba(15, 23, 42, 0.7);
+      }
+
+      .color-name {
+        text-transform: capitalize;
+      }
+
+      .color-pct {
+        margin-left: auto;
+        color: var(--muted);
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 12px;
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="shell">
+      <div class="header">
+        <div class="brand-row">
+          <img
+            src="{{ url_for('static', filename='chiyou_logo.png') }}"
+            alt="Chiyou logo"
+            class="brand-logo"
+          />
+          <div>
+            <div class="brand-main">CHIYOU</div>
+            <div class="brand-tagline">We Cure You</div>
+            <div class="brand-sub-korean">치유 한방 향기 랩</div>
+          </div>
+        </div>
+        <p class="subtitle">
+          Upload a photo and let Chiyou’s hanbang-inspired AI read its healing
+          colors to craft a personalized scent ritual.
+        </p>
+      </div>
+
+      <div class="card">
+        <!-- Left: upload + image preview -->
+        <div class="panel">
+          <h2>Upload photo</h2>
+
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <div class="flash">
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+          {% endwith %}
+
+          <form id="upload-form" method="POST" enctype="multipart/form-data">
+            <label for="photo-input" class="upload-zone">
+              <div class="upload-label-main">Drop an image or click to browse</div>
+              <div class="upload-label-sub">
+                Supported formats: PNG, JPG, JPEG, GIF, WebP
+              </div>
+            </label>
+            <input
+              id="photo-input"
+              type="file"
+              name="photo"
+              accept=".png,.jpg,.jpeg,.gif,.webp"
+            />
+
+            <div class="button-row">
+              <button type="button" class="btn-ghost" onclick="clearSelection()">
+                Clear
+              </button>
+              <button type="submit" class="btn-primary">
+                Analyze image
+              </button>
+            </div>
+          </form>
+
+          <div class="preview-wrapper" style="margin-top: 14px">
+            <img
+              id="preview-img"
+              class="preview-img"
+              src="{% if image_url %}{{ image_url }}{% else %}https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=800{% endif %}"
+              alt="Uploaded visual mood"
+            />
+            <div class="meta-row">
+              <span>오늘의 기운 (today’s energy)</span>
+              <span class="chip">
+                <span class="chip-dot"></span>
+                Korean herbal color reading
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: result summary -->
+        <div class="panel">
+          <h2>Fragrance reading</h2>
+
+          {% if recommendation and coordinates %}
+          <div>
+            <h3 class="summary-title">{{ recommendation }}</h3>
+            <p class="summary-subtitle">
+              Based on your image’s emotional color profile.
+            </p>
+            <div class="va-pill">
+              <span>Valence: <strong>{{ coordinates[0] }}</strong></span>
+              <span>·</span>
+              <span>Arousal: <strong>{{ coordinates[1] }}</strong></span>
+            </div>
+
+            {% if top5_colors %}
+            <div class="colors-list">
+              {% for color, pct in top5_colors %}
+              <div class="color-row">
+                <span
+                  class="color-swatch"
+                  style="background: {{ color }};"
+                ></span>
+                <span class="color-name">{{ color }}</span>
+                <span class="color-pct">{{ "%.1f"|format(pct) }}%</span>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% else %}
+          <p class="summary-subtitle">
+            Your Chiyou recommendation will appear here after you upload a
+            photo rooted in your day, your skin, and your 마음 (mind).
+          </p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="footer">
+        Chiyou: We Cure You – inspired by Korean traditional medicine, guided by
+        color and emotion.
+      </div>
+    </div>
+
+    <script>
+      const fileInput = document.getElementById("photo-input");
+      const uploadZone = document.querySelector(".upload-zone");
+      const previewImg = document.getElementById("preview-img");
+
+      uploadZone.addEventListener("click", () => fileInput.click());
+
+      fileInput.addEventListener("change", () => {
+        const file = fileInput.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImg.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      function clearSelection() {
+        fileInput.value = "";
+        // Optional: reset to brand logo
+        previewImg.src = "{{ url_for('static', filename='chiyou_logo.png') }}";
+      }
+    </script>
+  </body>
+</html>
+
